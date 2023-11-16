@@ -1,0 +1,24 @@
+.prod-container {
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+.card {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #e7f211;
+}
+
+.list-group-item {
+  background-color: #e7f211;
+}
+
+.btn-space {
+  margin-right: 5px;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}

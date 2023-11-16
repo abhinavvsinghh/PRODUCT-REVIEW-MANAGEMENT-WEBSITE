@@ -1,0 +1,67 @@
+<!-- navbar  -->
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
+  <div class="container-fluid">
+    <a class="navbar-brand">Product Review System</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse col-xs-3" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <button class="btn btn-light btn-space" *ngIf="name">
+            Welcome {{ name }}
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-danger btn-space" (click)="logout()">
+            Logout
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- search form -->
+<div class="container">
+  <form [formGroup]="searchForm" (ngSubmit)="search()">
+    <div class="form-group">
+      <label for="code">Product Code</label>
+      <input type="number" class="form-control" formControlName="code">
+    </div>
+    <div class="form-group">
+      <label for="name">Product Name</label>
+      <input type="text" class="form-control" formControlName="name">
+    </div>
+    <div class="form-group">
+      <label for="brand">Product Brand</label>
+      <input type="text" class="form-control" formControlName="brand">
+    </div>
+    <button type="submit" class="btn btn-primary btn-up">Search</button>
+  </form>
+</div>
+
+<!-- Show Error Message -->
+<div class="container" *ngIf="errMsgShow">
+  <p class="text-danger">{{ errMsg }}</p>
+</div>
+
+<!-- product display -->
+<div class="container" *ngIf="data">
+  <div class="row row-cols-3">
+    <div class="card" style="width: 18rem;" *ngFor="let item of data">
+      <img src="data:image/jpeg;base64,{{item.photos}}" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title text-center">{{item.name}} - {{item.brand}}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item text-center">Product Code: {{item.code}}</li>
+        <!-- <li class="list-group-item text-center">Average rating: {{item.code}}</li> -->
+        <li class="list-group-item text-center"><button type="button" class="btn btn-primary btn-sm"
+            [routerLink]="['review',item.code]">Comments</button></li>
+      </ul>
+    </div>
+  </div>
+</div>

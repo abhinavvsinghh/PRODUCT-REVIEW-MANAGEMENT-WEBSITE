@@ -1,0 +1,74 @@
+<!-- navbar  -->
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <div class="container-fluid">
+        <a class="navbar-brand">Admin Management System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse col-xs-3" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <button class="btn btn-light btn-space" *ngIf="name">
+                        Welcome {{ name }}
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h4 style="margin-top: 20px; text-align: center">
+        Total {{ size ? size : 0 }} Products Added
+    </h4>
+
+    <section class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Add Product Details</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" [formGroup]="addProductForm" (ngSubmit)="addProduct()">
+                <div class="form-group">
+                    <label for="code" class="col-sm-3 control-label">Product Code</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" formControlName="code" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-3 control-label">Product Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" formControlName="name" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="brand" class="col-sm-3 control-label">Product Brand</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" formControlName="brand" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="image" class="col-sm-3 control-label">Product Image</label>
+                    <div class="col-sm-9">
+                        <input type="file" class="form-control" formControlName="path" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button class="btn btn-primary btn-up" [disabled]="addProductForm.invalid">
+                            Add product
+                        </button>
+                        <!-- errmsg show here -->
+                        <div *ngIf="errMsgShow">
+                            <p class="text-danger">{{ errMsg }}</p>
+                        </div>
+                        <!-- Message -->
+                        <div *ngIf="successMsgShow">
+                            <p class="input-group text-success">{{ successMsg }}</p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>

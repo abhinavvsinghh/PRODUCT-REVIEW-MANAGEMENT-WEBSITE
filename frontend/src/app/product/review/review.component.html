@@ -1,0 +1,70 @@
+<!-- navbar  -->
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <div class="container-fluid">
+        <a class="navbar-brand">Product Review System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse col-xs-3" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <button class="btn btn-light btn-space" *ngIf="name">
+                        Welcome {{ name }}
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-danger btn-space" (click)="logout()">
+                        Logout
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- reviews -->
+<div class="review-container">
+    <form [formGroup]="addReviewForm">
+        <div style="display: flex; gap:40px ">
+            <div>
+                <h5 style="margin-top: 12px; font-weight: bold;">Leave a Review:</h5>
+            </div>
+            <div class="rating">
+                <ngx-star-rating style="display:flex" formControlName="rating"></ngx-star-rating>
+                <textarea name="msg" msg cols="30" rows="5" style="border-color: black;" formControlName="review">
+                </textarea>
+                <button type="button" class="btn btn-primary btn-up" (click)="addReview()"
+                    [disabled]="addReviewForm.invalid">Add
+                    Review
+                </button>
+                <!-- Message -->
+                <div *ngIf="successMsgShow">
+                    <p class="input-group text-success">{{ successMsg }}</p>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+            <div>
+                <h2 *ngIf="avgRating">Average Rating : {{avgRating}} ⭐</h2>
+            </div>
+            <div class="card p-3" *ngFor="let item of data">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="user d-flex flex-row align-items-center">
+                        <span>
+                            <h4 class="font-weight-bold text-primary">{{item.name}}</h4>
+                            <h6 class="font-weight-bold">Rating: {{item.rating}}</h6>
+                            <h6 class="font-weight-bold">Review: {{item.review}}</h6>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

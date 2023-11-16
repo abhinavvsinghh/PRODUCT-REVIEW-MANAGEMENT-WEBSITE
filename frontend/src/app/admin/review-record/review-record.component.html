@@ -1,0 +1,56 @@
+<!-- navbar  -->
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <div class="container-fluid">
+        <a class="navbar-brand">Admin Management System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse col-xs-3" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <button class="btn btn-light btn-space" *ngIf="name">Welcome {{name}}</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-warning btn-space" (click)="addProduct()">Add Product</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-danger btn-space" (click)="logout()">Logout</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h4 style="margin-top: 20px; text-align: center;">Total {{size ? size : 0}} Review Needs Approval</h4>
+    <table class="table table-success table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Product Code</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Review</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col"> Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data" class="table-info">
+                <td>{{item.code}}</td>
+                <td>{{item.rating}}</td>
+                <td>{{item.review}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.email}}</td>
+                <td>
+                    <div class="actionButton">
+                        <button type="button" class="btn btn-primary btn-space"
+                            (click)="approve(item.id, item.email)">Approve</button>
+                        <button type="button" class="btn btn-danger btn-space"
+                            (click)="reject(item.id, item.email)">Reject</button>
+                    </div>
+
+                </td>
+            </tr>
+    </table>
+</div>

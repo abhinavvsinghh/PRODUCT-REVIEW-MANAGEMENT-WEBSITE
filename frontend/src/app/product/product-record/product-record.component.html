@@ -1,0 +1,41 @@
+<!-- navbar  -->
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <div class="container-fluid">
+        <a class="navbar-brand">Product Review System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse col-xs-3" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <button class="btn btn-light btn-space" *ngIf="name">Welcome {{name}}</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-warning btn-space" (click)="search()">Search Product</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-danger btn-space" (click)="logout()">Logout</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- product display -->
+<div class="prod-container">
+    <div class="row row-cols-3">
+        <div class="card" style="width: 18rem;" *ngFor="let item of data">
+            <img src="data:image/jpeg;base64,{{item.photos}}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title text-center">{{item.name}} - {{item.brand}}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item text-center">Product Code: {{item.code}}</li>
+                <!-- <li class="list-group-item text-center" *ngIf="item.code">Average rating: {{avgRating(item.code) ? avgRating(item.code) : 0}}</li> -->
+                <li class="list-group-item text-center"><button type="button" class="btn btn-primary btn-sm"
+                        [routerLink]="['review',item.code]">Comments</button></li>
+            </ul>
+        </div>
+    </div>
+</div>
